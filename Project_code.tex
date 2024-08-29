@@ -1,0 +1,532 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Customer Data Analysis},
+  pdfauthor={Sahil Thorat},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Customer Data Analysis}
+\author{Sahil Thorat}
+\date{2024-07-25}
+
+\begin{document}
+\maketitle
+
+\subsection{Loading and Exploring the
+Data}\label{loading-and-exploring-the-data}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{getwd}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "D:/Projects/Data_Projects_AIO/Customer_Segmentation/Code"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(readr)}
+\CommentTok{\# Load the data}
+\NormalTok{customer\_data}\OtherTok{=}\FunctionTok{read.csv}\NormalTok{(}\StringTok{"D:/Projects/Data\_Projects\_AIO/Customer\_Segmentation/data/Mall\_Customers.csv"}\NormalTok{)}
+
+\FunctionTok{head}\NormalTok{(customer\_data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   CustomerID Gender Age Annual.Income..k.. Spending.Score..1.100.
+## 1          1   Male  19                 15                     39
+## 2          2   Male  21                 15                     81
+## 3          3 Female  20                 16                      6
+## 4          4 Female  23                 16                     77
+## 5          5 Female  31                 17                     40
+## 6          6 Female  22                 17                     76
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{str}\NormalTok{(customer\_data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    200 obs. of  5 variables:
+##  $ CustomerID            : int  1 2 3 4 5 6 7 8 9 10 ...
+##  $ Gender                : chr  "Male" "Male" "Female" "Female" ...
+##  $ Age                   : int  19 21 20 23 31 22 35 23 64 30 ...
+##  $ Annual.Income..k..    : int  15 15 16 16 17 17 18 18 19 19 ...
+##  $ Spending.Score..1.100.: int  39 81 6 77 40 76 6 94 3 72 ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(customer\_data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    CustomerID        Gender               Age        Annual.Income..k..
+##  Min.   :  1.00   Length:200         Min.   :18.00   Min.   : 15.00    
+##  1st Qu.: 50.75   Class :character   1st Qu.:28.75   1st Qu.: 41.50    
+##  Median :100.50   Mode  :character   Median :36.00   Median : 61.50    
+##  Mean   :100.50                      Mean   :38.85   Mean   : 60.56    
+##  3rd Qu.:150.25                      3rd Qu.:49.00   3rd Qu.: 78.00    
+##  Max.   :200.00                      Max.   :70.00   Max.   :137.00    
+##  Spending.Score..1.100.
+##  Min.   : 1.00         
+##  1st Qu.:34.75         
+##  Median :50.00         
+##  Mean   :50.20         
+##  3rd Qu.:73.00         
+##  Max.   :99.00
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{names}\NormalTok{(customer\_data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "CustomerID"             "Gender"                 "Age"                   
+## [4] "Annual.Income..k.."     "Spending.Score..1.100."
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Rename the columns}
+\FunctionTok{names}\NormalTok{(customer\_data)}\OtherTok{=}\FunctionTok{c}\NormalTok{(}\StringTok{"CustomerID"}\NormalTok{, }\StringTok{"Gender"}\NormalTok{, }\StringTok{"Age"}\NormalTok{, }\StringTok{"AnnualIncome"}\NormalTok{, }\StringTok{"SpendingScore"}\NormalTok{)}
+
+\CommentTok{\# Standard deviation for Age}
+\FunctionTok{sd}\NormalTok{(customer\_data}\SpecialCharTok{$}\NormalTok{Age)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 13.96901
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Summary and SD statistics for Annual Income}
+\FunctionTok{summary}\NormalTok{(customer\_data}\SpecialCharTok{$}\NormalTok{AnnualIncome)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   15.00   41.50   61.50   60.56   78.00  137.00
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sd}\NormalTok{(customer\_data}\SpecialCharTok{$}\NormalTok{AnnualIncome)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 26.26472
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Summary and SD statistics for Spending Score}
+\FunctionTok{summary}\NormalTok{(customer\_data}\SpecialCharTok{$}\NormalTok{SpendingScore)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    1.00   34.75   50.00   50.20   73.00   99.00
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sd}\NormalTok{(customer\_data}\SpecialCharTok{$}\NormalTok{SpendingScore)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 25.82352
+\end{verbatim}
+
+\subsection{Visualizations}\label{visualizations}
+
+\subsubsection{Bar Plot for Gender
+Distribution}\label{bar-plot-for-gender-distribution}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Frequency table for Gender}
+\NormalTok{a}\OtherTok{=}\FunctionTok{table}\NormalTok{(customer\_data}\SpecialCharTok{$}\NormalTok{Gender)}
+
+\CommentTok{\# Barplot for gender distribution}
+\NormalTok{barplot\_heights}\OtherTok{=}\FunctionTok{barplot}\NormalTok{(a, }\AttributeTok{main=}\StringTok{"Gender Comparison"}\NormalTok{,}
+        \AttributeTok{ylab=}\StringTok{"Count"}\NormalTok{, }\AttributeTok{xlab=}\StringTok{"Gender"}\NormalTok{,}
+        \AttributeTok{col=}\FunctionTok{rainbow}\NormalTok{(}\DecValTok{2}\NormalTok{),}
+        \AttributeTok{legend=}\FunctionTok{rownames}\NormalTok{(a))}
+
+\FunctionTok{text}\NormalTok{(barplot\_heights, a, }\AttributeTok{labels =}\NormalTok{ a, }\AttributeTok{pos =} \DecValTok{3}\NormalTok{, }\AttributeTok{cex =} \FloatTok{0.8}\NormalTok{, }\AttributeTok{col =} \StringTok{"black"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Project_code_files/figure-latex/unnamed-chunk-3-1.pdf}
+
+\subsubsection{3D Pie Chart for Gender
+Ratio}\label{d-pie-chart-for-gender-ratio}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(plotrix)}
+
+\NormalTok{pct}\OtherTok{=}\FunctionTok{round}\NormalTok{(a }\SpecialCharTok{/} \FunctionTok{sum}\NormalTok{(a) }\SpecialCharTok{*} \DecValTok{100}\NormalTok{)}
+
+\CommentTok{\# Labels for the pie chart}
+\NormalTok{lbs}\OtherTok{=}\FunctionTok{paste}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"Female"}\NormalTok{, }\StringTok{"Male"}\NormalTok{), }\StringTok{" "}\NormalTok{, pct, }\StringTok{"\%"}\NormalTok{, }\AttributeTok{sep=}\StringTok{" "}\NormalTok{)}
+\FunctionTok{pie3D}\NormalTok{(a, }\AttributeTok{labels=}\NormalTok{lbs, }\AttributeTok{main=}\StringTok{"Pie Chart Ratio of Female Vs Male"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Project_code_files/figure-latex/unnamed-chunk-4-1.pdf}
+
+\subsubsection{Histogram and Boxplot for
+Age}\label{histogram-and-boxplot-for-age}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Histogram for Age distribution}
+\FunctionTok{hist}\NormalTok{(customer\_data}\SpecialCharTok{$}\NormalTok{Age, }\AttributeTok{col=}\StringTok{"blue"}\NormalTok{,}
+     \AttributeTok{main=}\StringTok{"Count of each Age Class"}\NormalTok{,}
+     \AttributeTok{xlab=}\StringTok{"Age Class"}\NormalTok{, }\AttributeTok{ylab=}\StringTok{"Frequency"}\NormalTok{,}
+     \AttributeTok{labels=}\ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Project_code_files/figure-latex/unnamed-chunk-5-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Boxplot for Age}
+\FunctionTok{boxplot}\NormalTok{(customer\_data}\SpecialCharTok{$}\NormalTok{Age, }\AttributeTok{main=}\StringTok{"Boxplot for Descriptive Analysis of Age"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Project_code_files/figure-latex/unnamed-chunk-5-2.pdf}
+
+\subsubsection{Annual Income Analysis}\label{annual-income-analysis}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Histogram for Annual Income}
+\FunctionTok{hist}\NormalTok{(customer\_data}\SpecialCharTok{$}\NormalTok{AnnualIncome, }\AttributeTok{col=}\StringTok{"\#660033"}\NormalTok{,}
+     \AttributeTok{main=}\StringTok{"Histogram Plot for Annual Income"}\NormalTok{,}
+     \AttributeTok{xlab=}\StringTok{"Annual Income Class"}\NormalTok{, }\AttributeTok{ylab=}\StringTok{"Frequency"}\NormalTok{,}
+     \AttributeTok{labels=}\ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Project_code_files/figure-latex/unnamed-chunk-6-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Density plot for Annual Income}
+\FunctionTok{plot}\NormalTok{(}\FunctionTok{density}\NormalTok{(customer\_data}\SpecialCharTok{$}\NormalTok{AnnualIncome), }\AttributeTok{col=}\StringTok{"yellow"}\NormalTok{,}
+     \AttributeTok{main=}\StringTok{"Density Plot for Annual Income"}\NormalTok{,}
+     \AttributeTok{xlab=}\StringTok{"Annual Income Class"}\NormalTok{, }\AttributeTok{ylab=}\StringTok{"Density"}\NormalTok{)}
+
+\CommentTok{\# Adding polygon to the density plot}
+\FunctionTok{polygon}\NormalTok{(}\FunctionTok{density}\NormalTok{(customer\_data}\SpecialCharTok{$}\NormalTok{AnnualIncome), }\AttributeTok{col=}\StringTok{"\#ccff66"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Project_code_files/figure-latex/unnamed-chunk-6-2.pdf}
+
+\subsubsection{Spending Score Analysis}\label{spending-score-analysis}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Boxplot for Spending Score}
+\FunctionTok{boxplot}\NormalTok{(customer\_data}\SpecialCharTok{$}\NormalTok{SpendingScore, }\AttributeTok{horizontal=}\ConstantTok{TRUE}\NormalTok{,}\AttributeTok{main=}\StringTok{"BoxPlot for Descriptive Analysis of Spending Score"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Project_code_files/figure-latex/unnamed-chunk-7-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Histogram for Spending Score}
+\FunctionTok{hist}\NormalTok{(customer\_data}\SpecialCharTok{$}\NormalTok{SpendingScore, }\AttributeTok{main=}\StringTok{"Histogram for Spending Score"}\NormalTok{,}
+     \AttributeTok{xlab=}\StringTok{"Spending Score Class"}\NormalTok{, }\AttributeTok{ylab=}\StringTok{"Frequency"}\NormalTok{,}
+     \AttributeTok{col=}\StringTok{"\#6600cc"}\NormalTok{, }\AttributeTok{labels=}\ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Project_code_files/figure-latex/unnamed-chunk-7-2.pdf}
+
+\subsection{K-Means Clustering}\label{k-means-clustering}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Load the purrr package}
+\FunctionTok{library}\NormalTok{(purrr)}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\CommentTok{\# Function to calculate total intra{-}cluster sum of square}
+\NormalTok{iss}\OtherTok{=}\ControlFlowTok{function}\NormalTok{(k) \{}
+  \FunctionTok{kmeans}\NormalTok{(customer\_data[, }\DecValTok{3}\SpecialCharTok{:}\DecValTok{5}\NormalTok{], k, }\AttributeTok{iter.max=}\DecValTok{100}\NormalTok{, }\AttributeTok{nstart=}\DecValTok{100}\NormalTok{, }\AttributeTok{algorithm=}\StringTok{"Lloyd"}\NormalTok{)}\SpecialCharTok{$}\NormalTok{tot.withinss}
+\NormalTok{\}}
+
+\CommentTok{\# Define the range of k values}
+\NormalTok{k.values}\OtherTok{=}\DecValTok{1}\SpecialCharTok{:}\DecValTok{10}
+
+\CommentTok{\# Calculate the total intra{-}cluster sum of square for each k}
+\NormalTok{iss\_values}\OtherTok{=}\FunctionTok{map\_dbl}\NormalTok{(k.values, iss)}
+
+\CommentTok{\# Plot the total intra{-}cluster sum of squares against k}
+\FunctionTok{plot}\NormalTok{(k.values, iss\_values, }\AttributeTok{type=}\StringTok{"b"}\NormalTok{, }\AttributeTok{pch =} \DecValTok{19}\NormalTok{, }\AttributeTok{frame =} \ConstantTok{FALSE}\NormalTok{, }
+     \AttributeTok{xlab=}\StringTok{"Number of clusters K"}\NormalTok{, }\AttributeTok{ylab=}\StringTok{"Total intra{-}clusters sum of squares"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Project_code_files/figure-latex/unnamed-chunk-8-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(NbClust)}
+\FunctionTok{library}\NormalTok{(factoextra)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'factoextra' was built under R version 4.4.1
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: ggplot2
+\end{verbatim}
+
+\begin{verbatim}
+## Welcome! Want to learn more? See two factoextra-related books at https://goo.gl/ve3WBa
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{fviz\_nbclust}\NormalTok{(customer\_data[,}\DecValTok{3}\SpecialCharTok{:}\DecValTok{5}\NormalTok{], kmeans, }\AttributeTok{method =} \StringTok{"wss"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Project_code_files/figure-latex/unnamed-chunk-9-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{fviz\_nbclust}\NormalTok{(customer\_data[,}\DecValTok{3}\SpecialCharTok{:}\DecValTok{5}\NormalTok{], kmeans, }\AttributeTok{method =} \StringTok{"silhouette"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Project_code_files/figure-latex/unnamed-chunk-9-2.pdf}
+
+\subsubsection{Optimal Selection would be with 5 (wss) or 6
+(silhouette).After looking with both we would be going with
+5(wss).}\label{optimal-selection-would-be-with-5-wss-or-6-silhouette.after-looking-with-both-we-would-be-going-with-5wss.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{k6}\OtherTok{\textless{}{-}}\FunctionTok{kmeans}\NormalTok{(customer\_data[,}\DecValTok{3}\SpecialCharTok{:}\DecValTok{5}\NormalTok{],}\DecValTok{5}\NormalTok{,}\AttributeTok{iter.max=}\DecValTok{100}\NormalTok{,}\AttributeTok{nstart=}\DecValTok{50}\NormalTok{,}\AttributeTok{algorithm=}\StringTok{"Lloyd"}\NormalTok{)}
+\NormalTok{k6}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## K-means clustering with 5 clusters of sizes 39, 37, 22, 79, 23
+## 
+## Cluster means:
+##        Age AnnualIncome SpendingScore
+## 1 32.69231     86.53846      82.12821
+## 2 40.32432     87.43243      18.18919
+## 3 25.27273     25.72727      79.36364
+## 4 43.12658     54.82278      49.83544
+## 5 45.21739     26.30435      20.91304
+## 
+## Clustering vector:
+##   [1] 5 3 5 3 5 3 5 3 5 3 5 3 5 3 5 3 5 3 5 3 5 3 5 3 5 3 5 3 5 3 5 3 5 3 5 3 5
+##  [38] 3 5 3 5 3 5 4 5 3 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4
+##  [75] 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4
+## [112] 4 4 4 4 4 4 4 4 4 4 4 4 1 2 1 4 1 2 1 2 1 2 1 2 1 2 1 2 1 2 1 2 1 2 1 2 1
+## [149] 2 1 2 1 2 1 2 1 2 1 2 1 2 1 2 1 2 1 2 1 2 1 2 1 2 1 2 1 2 1 2 1 2 1 2 1 2
+## [186] 1 2 1 2 1 2 1 2 1 2 1 2 1 2 1
+## 
+## Within cluster sum of squares by cluster:
+## [1] 13972.359 18448.865  4099.818 29909.114  8948.609
+##  (between_SS / total_SS =  75.6 %)
+## 
+## Available components:
+## 
+## [1] "cluster"      "centers"      "totss"        "withinss"     "tot.withinss"
+## [6] "betweenss"    "size"         "iter"         "ifault"
+\end{verbatim}
+
+\subsection{K-Means Clustering
+Visualization}\label{k-means-clustering-visualization}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pcclust}\OtherTok{=}\FunctionTok{prcomp}\NormalTok{(customer\_data[,}\DecValTok{3}\SpecialCharTok{:}\DecValTok{5}\NormalTok{],}\AttributeTok{scale=}\ConstantTok{FALSE}\NormalTok{) }\CommentTok{\#principal component analysis}
+\FunctionTok{summary}\NormalTok{(pcclust)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Importance of components:
+##                            PC1     PC2     PC3
+## Standard deviation     26.4625 26.1597 12.9317
+## Proportion of Variance  0.4512  0.4410  0.1078
+## Cumulative Proportion   0.4512  0.8922  1.0000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pcclust}\SpecialCharTok{$}\NormalTok{rotation[,}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                      PC1        PC2
+## Age            0.1889742 -0.1309652
+## AnnualIncome  -0.5886410 -0.8083757
+## SpendingScore -0.7859965  0.5739136
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\FunctionTok{ggplot}\NormalTok{(customer\_data, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{AnnualIncome, }\AttributeTok{y =}\NormalTok{ SpendingScore)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{color =} \FunctionTok{as.factor}\NormalTok{(k6}\SpecialCharTok{$}\NormalTok{cluster))) }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_discrete}\NormalTok{(}\AttributeTok{name=}\StringTok{" "}\NormalTok{,}
+              \AttributeTok{breaks=}\FunctionTok{c}\NormalTok{(}\StringTok{"1"}\NormalTok{, }\StringTok{"2"}\NormalTok{, }\StringTok{"3"}\NormalTok{, }\StringTok{"4"}\NormalTok{, }\StringTok{"5"}\NormalTok{),}
+              \AttributeTok{labels=}\FunctionTok{c}\NormalTok{(}\StringTok{"Cluster 1"}\NormalTok{, }\StringTok{"Cluster 2"}\NormalTok{, }\StringTok{"Cluster 3"}\NormalTok{, }\StringTok{"Cluster 4"}\NormalTok{, }\StringTok{"Cluster 5"}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Mall Customers Spending Vs Income"}\NormalTok{, }\AttributeTok{subtitle =} \StringTok{"Using K{-}means Clustering"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Project_code_files/figure-latex/unnamed-chunk-12-1.pdf}
+
+\subsubsection{Final Output}\label{final-output}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{kCols}\OtherTok{=}\ControlFlowTok{function}\NormalTok{(vec)\{cols}\OtherTok{=}\FunctionTok{rainbow}\NormalTok{ (}\FunctionTok{length}\NormalTok{ (}\FunctionTok{unique}\NormalTok{ (vec)))}
+\FunctionTok{return}\NormalTok{ (cols[}\FunctionTok{as.numeric}\NormalTok{(}\FunctionTok{as.factor}\NormalTok{(vec))])\}}
+
+\NormalTok{digCluster}\OtherTok{\textless{}{-}}\NormalTok{k6}\SpecialCharTok{$}\NormalTok{cluster; dignm}\OtherTok{\textless{}{-}}\FunctionTok{as.character}\NormalTok{(digCluster); }\CommentTok{\# K{-}means clusters}
+
+\FunctionTok{plot}\NormalTok{(pcclust}\SpecialCharTok{$}\NormalTok{x[,}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{], }\AttributeTok{col =}\FunctionTok{kCols}\NormalTok{(digCluster),}\AttributeTok{pch =}\DecValTok{19}\NormalTok{,}\AttributeTok{xlab =}\StringTok{"K{-}means"}\NormalTok{,}\AttributeTok{ylab=}\StringTok{"classes"}\NormalTok{)}
+\FunctionTok{legend}\NormalTok{(}\StringTok{"bottomleft"}\NormalTok{,}\FunctionTok{unique}\NormalTok{(dignm),}\AttributeTok{fill=}\FunctionTok{unique}\NormalTok{(}\FunctionTok{kCols}\NormalTok{(digCluster)))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Project_code_files/figure-latex/unnamed-chunk-13-1.pdf}
+
+\end{document}
