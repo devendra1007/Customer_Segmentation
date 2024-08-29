@@ -1,0 +1,179 @@
+---
+title: "Customer Data Analysis"
+author: "Sahil Thorat"
+date: "2024-07-25"
+output: html_document
+---
+
+## Loading and Exploring the Data
+
+```{r}
+getwd()
+library(readr)
+# Load the data
+customer_data=read.csv("D:/Projects/Data_Projects_AIO/Customer_Segmentation/data/Mall_Customers.csv")
+
+head(customer_data)
+str(customer_data)
+summary(customer_data)
+names(customer_data)
+
+# Rename the columns
+names(customer_data)=c("CustomerID", "Gender", "Age", "AnnualIncome", "SpendingScore")
+
+# Standard deviation for Age
+sd(customer_data$Age)
+```
+
+```{r}
+# Summary and SD statistics for Annual Income
+summary(customer_data$AnnualIncome)
+sd(customer_data$AnnualIncome)
+
+# Summary and SD statistics for Spending Score
+summary(customer_data$SpendingScore)
+sd(customer_data$SpendingScore)
+```
+
+## Visualizations
+
+### Bar Plot for Gender Distribution
+
+```{r}
+# Frequency table for Gender
+a=table(customer_data$Gender)
+
+# Barplot for gender distribution
+barplot_heights=barplot(a, main="Gender Comparison",
+        ylab="Count", xlab="Gender",
+        col=rainbow(2),
+        legend=rownames(a))
+
+text(barplot_heights, a, labels = a, pos = 3, cex = 0.8, col = "black")
+
+```
+
+### 3D Pie Chart for Gender Ratio
+
+```{r}
+library(plotrix)
+
+pct=round(a / sum(a) * 100)
+
+# Labels for the pie chart
+lbs=paste(c("Female", "Male"), " ", pct, "%", sep=" ")
+pie3D(a, labels=lbs, main="Pie Chart Ratio of Female Vs Male")
+```
+
+### Histogram and Boxplot for Age
+
+```{r}
+# Histogram for Age distribution
+hist(customer_data$Age, col="blue",
+     main="Count of each Age Class",
+     xlab="Age Class", ylab="Frequency",
+     labels=TRUE)
+
+# Boxplot for Age
+boxplot(customer_data$Age, main="Boxplot for Descriptive Analysis of Age")
+```
+
+### Annual Income Analysis
+
+```{r}
+# Histogram for Annual Income
+hist(customer_data$AnnualIncome, col="#660033",
+     main="Histogram Plot for Annual Income",
+     xlab="Annual Income Class", ylab="Frequency",
+     labels=TRUE)
+
+# Density plot for Annual Income
+plot(density(customer_data$AnnualIncome), col="yellow",
+     main="Density Plot for Annual Income",
+     xlab="Annual Income Class", ylab="Density")
+
+# Adding polygon to the density plot
+polygon(density(customer_data$AnnualIncome), col="#ccff66")
+```
+
+### Spending Score Analysis
+
+```{r}
+# Boxplot for Spending Score
+boxplot(customer_data$SpendingScore, horizontal=TRUE,main="BoxPlot for Descriptive Analysis of Spending Score")
+
+# Histogram for Spending Score
+hist(customer_data$SpendingScore, main="Histogram for Spending Score",
+     xlab="Spending Score Class", ylab="Frequency",
+     col="#6600cc", labels=TRUE)
+```
+
+## K-Means Clustering
+
+```{r}
+# Load the purrr package
+library(purrr)
+set.seed(123)
+
+# Function to calculate total intra-cluster sum of square
+iss=function(k) {
+  kmeans(customer_data[, 3:5], k, iter.max=100, nstart=100, algorithm="Lloyd")$tot.withinss
+}
+
+# Define the range of k values
+k.values=1:10
+
+# Calculate the total intra-cluster sum of square for each k
+iss_values=map_dbl(k.values, iss)
+
+# Plot the total intra-cluster sum of squares against k
+plot(k.values, iss_values, type="b", pch = 19, frame = FALSE, 
+     xlab="Number of clusters K", ylab="Total intra-clusters sum of squares")
+```
+
+```{r}
+library(NbClust)
+library(factoextra)
+
+fviz_nbclust(customer_data[,3:5], kmeans, method = "wss")
+fviz_nbclust(customer_data[,3:5], kmeans, method = "silhouette")
+```
+
+### Optimal Selection would be with 5 (wss) or 6 (silhouette).After looking with both we would be going with 5(wss).
+
+```{r}
+ 
+k6<-kmeans(customer_data[,3:5],5,iter.max=100,nstart=50,algorithm="Lloyd")
+k6
+```
+
+## K-Means Clustering Visualization
+
+```{r}
+pcclust=prcomp(customer_data[,3:5],scale=FALSE) #principal component analysis
+summary(pcclust)
+
+pcclust$rotation[,1:2]
+```
+
+```{r}
+set.seed(1)
+ggplot(customer_data, aes(x =AnnualIncome, y = SpendingScore)) + 
+  geom_point(stat = "identity", aes(color = as.factor(k6$cluster))) +
+  scale_color_discrete(name=" ",
+              breaks=c("1", "2", "3", "4", "5"),
+              labels=c("Cluster 1", "Cluster 2", "Cluster 3", "Cluster 4", "Cluster 5")) +
+  ggtitle("Mall Customers Spending Vs Income", subtitle = "Using K-means Clustering")
+```
+
+### Final Output
+
+```{r}
+kCols=function(vec){cols=rainbow (length (unique (vec)))
+return (cols[as.numeric(as.factor(vec))])}
+
+digCluster<-k6$cluster; dignm<-as.character(digCluster); # K-means clusters
+
+plot(pcclust$x[,1:2], col =kCols(digCluster),pch =19,xlab ="K-means",ylab="classes")
+legend("bottomleft",unique(dignm),fill=unique(kCols(digCluster)))
+```
