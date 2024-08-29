@@ -52,7 +52,7 @@ This project is designed to analyze customer data using R, focusing on explorato
 ## Notes
 
 - The optimal number of clusters was determined to be 5, based on the elbow method (wss).
-- The analysis and visualizations are saved in an HTML file as the final output.
+- The analysis and visualizations are saved in an PDF file as the final output.
 
 ## Author
 
